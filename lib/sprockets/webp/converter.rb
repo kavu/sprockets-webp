@@ -13,7 +13,7 @@ class Converter
     digest    = config.digest ? "-#{context.environment.digest.update(data).hexdigest}" : nil
     file_name = context.logical_path # Original File name w/o extension
     file_ext  = context.pathname.extname # Original File extension
-    webp_file = "#{name}#{digest}#{ext}.webp" # WebP File fullname
+    webp_file = "#{file_name}#{digest}#{file_ext}.webp" # WebP File fullname
 
     # WebP File Pathname
     webp_path = Pathname.new File.join(app.root, 'public', config.prefix, webp_file)
