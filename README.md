@@ -19,19 +19,23 @@ The main requirement is obviously [libwebp](https://developers.google.com/speed/
 
 If you're using Rails 4 you need to add gem to the ```:production``` group in to your application's Gemfile:
 
-    group :produciton do
-      # ...
-      gem 'sprockets-webp'
-      # ...
-    end
+```ruby
+group :produciton do
+  # ...
+  gem 'sprockets-webp'
+  # ...
+end
+```
 
 In case of Rails 3, add it to the ```:assets``` group:
 
-    group :assets do
-      # ...
-      gem 'sprockets-webp'
-      # ...
-    end
+```ruby
+group :assets do
+  # ...
+  gem 'sprockets-webp'
+  # ...
+end
+```
 
 And then execute:
 
