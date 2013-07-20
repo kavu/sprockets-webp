@@ -1,6 +1,15 @@
 # Sprockets::WebP
 
-This gem provides a Rails Asset Pipeline hook for converting PNG and JPEG assets to WebP format.
+[![unstable](https://rawgithub.com/hughsk/stability-badges/master/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
+
+[![Gem Version](https://badge.fury.io/rb/sprockets-webp.png)](http://badge.fury.io/rb/sprockets-webp)
+[![Code Climate](https://codeclimate.com/github/kavu/sprockets-webp.png)](https://codeclimate.com/github/kavu/sprockets-webp)
+[![Dependency Status](https://gemnasium.com/kavu/sprockets-webp.png)](https://gemnasium.com/kavu/sprockets-webp)
+[![Still Maintained](http://stillmaintained.com/kavu/sprockets-webp.png)](http://stillmaintained.com/kavu/sprockets-webp)
+
+[![Coderwall](https://api.coderwall.com/kavu/endorsecount.png)](https://coderwall.com/kavu)
+
+This gem provides a Rails Asset Pipeline hook for converting PNG and JPEG assets to the WebP format.
 
 ## Requirements
 
