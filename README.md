@@ -20,7 +20,7 @@ The main requirement is obviously [libwebp](https://developers.google.com/speed/
 If you're using Rails 4 you need to add gem to the ```:production``` group in to your application's Gemfile:
 
 ```ruby
-group :produciton do
+group :production do
   # ...
   gem 'sprockets-webp'
   # ...
