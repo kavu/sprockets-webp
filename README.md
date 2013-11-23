@@ -47,11 +47,19 @@ Drop some PNGs and JPGs into ```app/assets/images``` and you can test converter 
 
 ### Rails 3 Notice
 
-Minimal required version of Rails 3 is ```3.2.9```, because of Sprockets ```~> 2.2``` dependency requirement.
+Minimal required version of Rails 3 is ```3.2.9```, because of Sprockets ```~> 2.2``` dependency requirement. It just work in Rails 4.
 
-### Rails 4 Notice
+## Configuration
 
-I don't have any Rails 4 live apps right now, so I can't test this gem in "real", non synthetic, environment. So, if you have some problems, ideas or suggestions caused your Rails 4 application, please, feel free to contact me.
+You can configure encode options for webp by using encode_options:
+
+    Sprockets::WebP.encode_options = { quality: 90, lossless: 1, method: 5, alpha_filtering: 2 }
+
+or in this way:
+
+    Sprockets::WebP.configure do |config|
+      config.encode_options = { quality: 90, lossless: 1, method: 5, alpha_filtering: 2 }
+    end
 
 ## Contributing
 
