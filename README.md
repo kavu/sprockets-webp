@@ -47,7 +47,7 @@ Drop some PNGs and JPGs into ```app/assets/images``` and you can test converter 
 
 ### Rails 3 Notice
 
-Minimal required version of Rails 3 is ```3.2.9```, because of Sprockets ```~> 2.2``` dependency requirement. It just work in Rails 4.
+Minimal required version of Rails 3 is ```3.2.9```, because of Sprockets ```~> 2.2``` dependency requirement. In Rails 4 it just works.
 
 ## Configuration
 
