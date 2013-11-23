@@ -31,7 +31,7 @@ module Sprockets
 
           # Encode Original File Temp copy to WebP File Pathname
           begin
-            ::WebP.encode(file.path, webp_path.to_path, quality: 90) 
+            ::WebP.encode(file.path, webp_path.to_path, quality: 90, lossless: 1, method: 5, alpha_filtering: 2) 
           rescue => e
             $stdout.puts "WARNING: Webp convertion error for image #{file_name}. Error: #{e.message}"
           end
