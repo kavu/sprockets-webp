@@ -55,11 +55,7 @@ You can configure encode options for webp by using encode_options:
 
     Sprockets::WebP.encode_options = { quality: 90, lossless: 1, method: 5, alpha_filtering: 2 }
 
-or in this way:
-
-    Sprockets::WebP.configure do |config|
-      config.encode_options = { quality: 90, lossless: 1, method: 5, alpha_filtering: 2 }
-    end
+More options you can find in [web-ffi readme](https://github.com/le0pard/webp-ffi#encode-webp-image).
 
 ## Contributing
 
