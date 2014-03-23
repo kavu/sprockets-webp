@@ -57,6 +57,41 @@ You can configure encode options for webp by using encode_options:
 
 More options you can find in [web-ffi readme](https://github.com/le0pard/webp-ffi#encode-webp-image).
 
+## Capistrano deploy
+
+If you deploy your rails app by capistrano gem, you should update mtime for your webp images, because it will not present in manifest.json and will be cleanup automatically. To solve this problem you can use this capistrano task:
+
+```ruby
+after "deploy:update", "deploy:webp:touch"
+
+load do
+
+  namespace :deploy do
+
+    namespace :webp do
+
+      desc <<-DESC
+        [internal] Updates mtime for webp images
+      DESC
+      task :touch, :roles => :app, :except => { :no_release => true } do
+        run <<-CMD.compact
+          cd -- #{shared_path.shellescape}/#{shared_assets_prefix}/ &&
+          for asset in $(
+            find . -regex ".*\.webp$" -type f | LC_COLLATE=C sort
+          ); do
+            echo "Update webp asset: $asset";
+            touch -c -- "$asset";
+          done
+        CMD
+      end
+
+    end
+
+  end
+
+end
+```
+
 ## Contributing
 
 1. Fork it
