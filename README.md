@@ -53,7 +53,7 @@ Minimal required version of Rails 3 is ```3.2.9```, because of Sprockets ```~> 2
 
 You can configure encode options for webp by using `encode_options` (in example default options):
 
-    Sprockets::WebP.encode_options = { quality: 100, lossless: 1, method: 5, alpha_filtering: 1, alpha_compression: 0, alpha_quality: 100 }
+    Sprockets::WebP.encode_options = { quality: 100, lossless: 1, method: 6, alpha_filtering: 2, alpha_compression: 0, alpha_quality: 100 }
 
 More options you can find in [web-ffi readme](https://github.com/le0pard/webp-ffi#encode-webp-image).
 
