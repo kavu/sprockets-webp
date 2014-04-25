@@ -18,10 +18,7 @@ module Sprockets
           config = app.config.assets
 
           # If Application Assets Digests enabled - Add Digest
-          digest    = config.digest ? "-#{context.environment.digest.update(data).hexdigest}" : nil
-          file_name = context.logical_path # Original File name w/o extension
-          file_ext  = context.pathname.extname # Original File extension
-          webp_file = "#{file_name}#{digest}#{file_ext}.webp" # WebP File fullname
+          webp_file = webp_file_by_config(config)
 
           # WebP File Pathname
           webp_path = Pathname.new File.join(app.root, 'public', config.prefix, webp_file)
@@ -36,6 +33,13 @@ module Sprockets
         end
 
         private
+
+        def webp_file_by_config(config)
+          digest    = config.digest ? "-#{context.environment.digest.update(data).hexdigest}" : nil
+          file_name = context.logical_path # Original File name w/o extension
+          file_ext  = context.pathname.extname # Original File extension
+          "#{file_name}#{digest}#{file_ext}.webp" # WebP File fullname
+        end
 
         def encode_to_webp(data, webp_path, webp_file = "")
           # Create Temp File with Original File binary data
