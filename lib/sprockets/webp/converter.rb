@@ -51,6 +51,7 @@ module Sprockets
             # Encode Original File Temp copy to WebP File Pathname
             begin
               ::WebP.encode(file.path, webp_path, Sprockets::WebP.encode_options)
+              logger.info "Webp converted image #{webp_path}"
             rescue => e
               logger.warn "Webp convertion error of image #{webp_file}. Error info: #{e.message}"
             end
