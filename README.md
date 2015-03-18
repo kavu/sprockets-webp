@@ -71,7 +71,7 @@ namespace :deploy do
       task :touch => [:set_rails_env] do
         on roles(:web) do
           execute <<-CMD.gsub(/[\r\n\t]?/, '').squeeze(' ').strip
-          cd #{release_path.join('public/assets')}
+          cd #{release_path.join('public/assets')};
           for asset in $(
             find . -regex ".*\.webp$" -type f | LC_COLLATE=C sort
           ); do
@@ -83,7 +83,6 @@ namespace :deploy do
       end
     end
   end
-end
 end
 
 after 'deploy:updated', 'deploy:assets:webp:touch'
