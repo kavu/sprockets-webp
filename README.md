@@ -125,28 +125,14 @@ As not all browsers support ``webp`` images (see [Can I Use](http://caniuse.com/
 Here is a simple [ngnix](http://nginx.org) reciepe, which contrary to popular beliefs, do not require ``if`` nor ``rewrite``, instead use lightweight ``map`` and ``try_files``
 
 ```nginx
-user www-data;
- 
 http {
- 
-  ##
-  # Basic Settings
-  ##
- 
-  sendfile on;
-  tcp_nopush on;
-  tcp_nodelay on;
- 
   # IMPORTANT!!! Make sure that mime.types below lists WebP like that:
   # image/webp webp;
   include /etc/nginx/mime.types;
-  default_type application/octet-stream;
- 
-  gzip on;
-  gzip_disable "msie6";
- 
+
   ##
-  # Conditional variables
+  # Is webp supported?
+  # (needs to be part of http section)
   ##
   
   map $http_accept $webp_suffix {
@@ -155,21 +141,11 @@ http {
   }
  
   ##
-  # Minimal server
+  # Server
   ##
   
   server {
-    listen 80 default_server;
-    listen [::]:80 default_server ipv6only=on;
- 
-    root /usr/share/nginx/html;
-    index index.html;
- 
-    # Make site accessible from http://localhost/ or whatever you like
-    server_name localhost;
- 
     location ~* ^/images/.+\.(png|jpg)$ {
-      root /home/www-data;
       add_header Vary Accept;
       try_files $uri$webp_suffix $uri =404;
     }
