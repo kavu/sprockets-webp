@@ -92,6 +92,35 @@ load do
 end
 ```
 
+## CDN
+
+If you serve your assets using CDN, you need to make sure that it forwards `Accept` header allowing to conditionally choose webp for browsers which support it.
+
+### Amazon AWS CloudFront
+
+Following solution would would not work if your CloudFront distribution points to S3. Instead it should point to your webserver, which will host the webp serving logic.
+
+Take following steps to enable `Accept` header forwarding:
+
+* visit your CloudFront distributions page
+* select distribution
+* choose `Behaviors` tab
+* select behaviourrepresenting your assets end hit `Edit`
+* select `Whitelist` for the `Forward Headers` option
+* add `Accept` to the list on the right
+* approve your changes clicking `Yes, Edit`
+* wait until refreshed distribution will be deployed
+
+Test with:
+
+```
+curl -I -H "Accept: image/webp" http://yourdomain.com/yourimage.png
+curl -I http://yourdomain.com/yourimage.png
+```
+
+Returned `Content-Type` should be `image/webp` in the first case and `image/png` in the second.
+
+
 ## Contributing
 
 1. Fork it
