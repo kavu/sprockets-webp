@@ -17,6 +17,8 @@ The main requirement is obviously [libwebp](https://developers.google.com/speed/
 
 ## Installation
 
+### Rails 4
+
 If you're using Rails 4 you need to add gem to the ```:production``` group in to your application's Gemfile:
 
 ```ruby
@@ -27,7 +29,9 @@ group :production do
 end
 ```
 
-In case of Rails 3, add it to the ```:assets``` group:
+### Rails 3
+
+Minimal required version of Rails 3 is ```3.2.9```, because of Sprockets ```~> 2.2``` dependency requirement. Simply add sprockets-web to the ```:assets``` group:
 
 ```ruby
 group :assets do
@@ -37,18 +41,6 @@ group :assets do
 end
 ```
 
-And then execute:
-
-    $ bundle
-
-Drop some PNGs and JPGs into ```app/assets/images``` and you can test converter locally with the Rake task:
-
-    $ bundle exec rake assets:precompile RAILS_ENV=production
-
-### Rails 3 Notice
-
-Minimal required version of Rails 3 is ```3.2.9```, because of Sprockets ```~> 2.2``` dependency requirement. In Rails 4 it just works.
-
 ## Configuration
 
 You can configure encode options for webp by using `encode_options` (in example default options):
@@ -57,17 +49,52 @@ You can configure encode options for webp by using `encode_options` (in example 
 
 More options you can find in [web-ffi readme](https://github.com/le0pard/webp-ffi#encode-webp-image).
 
-## Capistrano deploy
+## Testing
 
-If you deploy your rails app by capistrano gem, you should update mtime for your webp images, because it will not present in manifest.json and will be cleanup automatically. To solve this problem you can use this capistrano task:
+Drop some PNGs and JPGs into ```app/assets/images``` and you can test converter locally with the Rake task:
+
+    $ bundle exec rake assets:precompile RAILS_ENV=production
+
+
+## Capistrano
+
+If you deploy your rails app by capistrano gem, you should update mtime for your webp images, because it will not present in manifest.json and will be cleanup automatically. To solve this problem you can use following capistrano task.
+
+### Capistrano 3
+
+```ruby
+namespace :deploy do
+  namespace :assets do
+    namespace :webp do
+
+      desc 'Updates mtime for webp images'
+      task :touch => [:set_rails_env] do
+        on roles(:web) do
+          execute <<-CMD.gsub(/[\r\n\t]?/, '').squeeze(' ').strip
+          cd #{release_path.join('public/assets')};
+          for asset in $(
+            find . -regex ".*\.webp$" -type f | LC_COLLATE=C sort
+          ); do
+            echo "Update webp asset: $asset";
+            touch -c -- "$asset";
+          done
+          CMD
+        end
+      end
+    end
+  end
+end
+
+after 'deploy:updated', 'deploy:assets:webp:touch'
+```
+
+### Capistrano 2
 
 ```ruby
 after "deploy:update", "deploy:webp:touch"
 
 load do
-
   namespace :deploy do
-
     namespace :webp do
 
       desc <<-DESC
@@ -84,11 +111,8 @@ load do
           done
         CMD
       end
-
     end
-
   end
-
 end
 ```
 
