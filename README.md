@@ -146,7 +146,10 @@ http {
   
   server {
     location ~* ^/images/.+\.(png|jpg)$ {
-      add_header Vary Accept;
+      if ($webp_suffix != "") {
+        add_header Vary Accept;
+      }
+      
       try_files $uri$webp_suffix $uri =404;
     }
   }
