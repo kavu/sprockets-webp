@@ -116,6 +116,52 @@ load do
 end
 ```
 
+## Web Server
+
+As not all browsers support ``webp`` images (see [Can I Use](http://caniuse.com/webp)), so they need to be served conditionally based on the HTTP ``Accept`` header sent by browsers capable to display this format.
+
+### Nginx
+
+Here is a simple [ngnix](http://nginx.org) reciepe, which contrary to popular beliefs, do not require ``if`` nor ``rewrite``, instead use lightweight ``map`` and ``try_files``
+
+```nginx
+http {
+  # IMPORTANT!!! Make sure that mime.types below lists WebP like that:
+  # image/webp webp;
+  include /etc/nginx/mime.types;
+
+  ##
+  # Is webp supported?
+  # (needs to be part of http section)
+  ##
+  
+  map $http_accept $webp_suffix {
+    default   "";
+    "~*webp"  ".webp";
+  }
+ 
+  ##
+  # Server
+  ##
+  
+  server {
+    location ~* ^/images/.+\.(png|jpg)$ {
+      if ($webp_suffix != "") {
+        add_header Vary Accept;
+      }
+      
+      try_files $uri$webp_suffix $uri =404;
+    }
+  }
+}
+```
+
+Make sure that webp is defined in `mime.types` file:
+
+```nginx
+image/webp  webp;
+```
+
 ## CDN
 
 If you serve your assets using CDN, you need to make sure that it forwards `Accept` header allowing to conditionally choose webp for browsers which support it.
