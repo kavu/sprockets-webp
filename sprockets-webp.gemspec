@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'sprockets/webp/version'
+require 'webp/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'sprockets-webp'
-  spec.version       = Sprockets::WebP::VERSION
+  spec.version       = SprocketsWebp::VERSION
   spec.authors       = ['Max Riveiro']
   spec.email         = ['kavu13@gmail.com']
   spec.description   = %q{Sprockets converter of PNG and JPEG assets to WebP}
@@ -19,9 +19,9 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 1.9.3'
 
-  spec.add_dependency 'sprockets', '~> 2.2'
+  spec.add_dependency 'sprockets', '>= 2.2'
   spec.add_dependency 'webp-ffi', '~> 0.2.0'
 
-  spec.add_development_dependency 'bundler', '~> 1.3'
+  spec.add_development_dependency 'bundler', '>= 1.3'
   spec.add_development_dependency 'rake'
 end

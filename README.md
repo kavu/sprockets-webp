@@ -31,7 +31,7 @@ end
 
 ### Rails 3
 
-Minimal required version of Rails 3 is ```3.2.9```, because of Sprockets ```~> 2.2``` dependency requirement. Simply add sprockets-web to the ```:assets``` group:
+Minimal required version of Rails 3 is ```3.2.9```, because of Sprockets ```>= 2.2``` dependency requirement. Simply add sprockets-web to the ```:assets``` group:
 
 ```ruby
 group :assets do
@@ -40,14 +40,6 @@ group :assets do
   # ...
 end
 ```
-
-## Configuration
-
-You can configure encode options for webp by using `encode_options` (in example default options):
-
-    Sprockets::WebP.encode_options = { quality: 100, lossless: 1, method: 6, alpha_filtering: 2, alpha_compression: 0, alpha_quality: 100 }
-
-More options you can find in [web-ffi readme](https://github.com/le0pard/webp-ffi#encode-webp-image).
 
 ## Testing
 
