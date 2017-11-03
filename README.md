@@ -1,6 +1,7 @@
 # Sprockets::WebP
 
 [![unstable](https://rawgithub.com/hughsk/stability-badges/master/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fkavu%2Fsprockets-webp.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fkavu%2Fsprockets-webp?ref=badge_shield)
 
 [![Gem Version](https://badge.fury.io/rb/sprockets-webp.png)](http://badge.fury.io/rb/sprockets-webp)
 [![Code Climate](https://codeclimate.com/github/kavu/sprockets-webp.png)](https://codeclimate.com/github/kavu/sprockets-webp)
@@ -198,3 +199,7 @@ Returned `Content-Type` should be `image/webp` in the first case and `image/png`
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fkavu%2Fsprockets-webp.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fkavu%2Fsprockets-webp?ref=badge_large)
