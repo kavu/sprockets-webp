@@ -2,7 +2,7 @@
 
 module Sprockets
   module WebP
-    class Railtie < (::Rails::VERSION::MAJOR < 4 ? ::Rails::Engine : ::Rails::Railtie)
+    class Railtie < ::Rails::Railtie
       initializer :webp do |app|
         app.assets.register_mime_type 'image/jpeg', '.jpg'
         app.assets.register_postprocessor 'image/jpeg', :jpeg_webp do |context, data|
