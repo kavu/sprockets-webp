@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 1.9.3'
 
-  spec.add_dependency 'sprockets', '~> 2.2'
+  spec.add_dependency 'sprockets', '> 3'
   spec.add_dependency 'webp-ffi', '~> 0.2.0'
 
   spec.add_development_dependency 'bundler', '~> 1.3'
