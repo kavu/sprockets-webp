@@ -168,7 +168,7 @@ If you serve your assets using CDN, you need to make sure that it forwards `Acce
 
 ### Amazon AWS CloudFront
 
-Following solution would would not work if your CloudFront distribution points to S3. Instead it should point to your webserver, which will host the webp serving logic.
+Following solution would not work if your CloudFront distribution points to S3. Instead it should point to your webserver, which will host the webp serving logic.
 
 Take following steps to enable `Accept` header forwarding:
 
