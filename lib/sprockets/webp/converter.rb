@@ -27,7 +27,7 @@ module Sprockets
           FileUtils.mkdir_p(webp_path.dirname) unless Dir.exists?(webp_path.dirname)
 
           # encode to webp
-          encode_to_webp(data, webp_path.to_path, webp_file)
+          encode_to_webp(data, webp_path.to_path, webp_file) if ::File.exist?(webp_path.to_path)
 
           data
         end
