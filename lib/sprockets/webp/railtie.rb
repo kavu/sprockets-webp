@@ -5,7 +5,7 @@ module Sprockets
     class Railtie < ::Rails::Railtie
       initializer :webp, group: :all do |app|
         app.config.assets.configure do |env|
-          env.register_mime_type 'image/jpeg', '.jpeg'
+          #  env.register_mime_type 'image/jpeg', '.jpeg'
           env.register_postprocessor 'image/jpeg', :jpeg_webp do |context, data|
             Converter.process(app, context, data)
           end
