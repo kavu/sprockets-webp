@@ -39,7 +39,7 @@ module Sprockets
           file_name = context.logical_path # Original File name w/o extension
           file_ext  = context.pathname.extname # Original File extension
           logger.info '********************************************************************************'
-          logger.info context
+          logger.info context.inspect
           logger.info file_name
           logger.info file_ext
           logger.info context.pathname
