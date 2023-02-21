@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'tempfile'
 require 'logger'
@@ -10,7 +10,6 @@ module Sprockets
   module WebP
     class Converter
       class << self
-
         attr_reader :context
 
         def process(app, context, data)
@@ -25,7 +24,7 @@ module Sprockets
           webp_path = Pathname.new File.join(app.root, 'public', config.prefix, webp_file)
 
           # Create Directory for both Files, unless already exists
-          FileUtils.mkdir_p(webp_path.dirname) unless Dir.exists?(webp_path.dirname)
+          FileUtils.mkdir_p(webp_path.dirname) unless Dir.exist?(webp_path.dirname)
 
           # encode to webp
           encode_to_webp(data, webp_path.to_path, webp_file) unless ::File.exist?(webp_path.to_path)
@@ -36,14 +35,11 @@ module Sprockets
         private
 
         def webp_file_by_config(config, data)
-          digest    = config.digest ? "-#{context.environment.digest_class.new.update(data).to_s}" : nil
+          digest    = config.digest ? "-#{context.environment.digest_class.new.update(data)}" : nil
           file_name = context.logical_path # Original File name w/o extension
           file_ext  = context.pathname.extname # Original File extension
           full_file_name = context.pathname.to_path
-          logger.info '********************************************************************************'
-          logger.info "#{context.metadata}"
-          logger.info "#{context.metadata[:dimensions]}"
-          logger.info '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
+
           "#{file_name}#{digest}#{dimensions(full_file_name)}#{file_ext}.webp" # WebP File fullname
         end
 
@@ -57,7 +53,7 @@ module Sprockets
           FastImage.size(filename)&.join('x')
         end
 
-        def encode_to_webp(data, webp_path, webp_file = "")
+        def encode_to_webp(data, webp_path, webp_file = '')
           # Create Temp File with Original File binary data
           Tempfile.open('webp') do |file|
             file.binmode
@@ -68,14 +64,14 @@ module Sprockets
             begin
               ::WebP.encode(file.path, webp_path, Sprockets::WebP.encode_options)
               logger.info "Webp converted image #{webp_path}"
-            rescue => e
+            rescue StandardError => e
               logger.warn "Webp convertion error of image #{webp_file}. Error info: #{e.message}"
             end
           end
         end
 
         def logger
-          if @context && @context.environment
+          if @context&.environment
             @context.environment.logger
           else
             logger = Logger.new($stderr)
@@ -83,7 +79,6 @@ module Sprockets
             logger
           end
         end
-
       end
     end
   end
