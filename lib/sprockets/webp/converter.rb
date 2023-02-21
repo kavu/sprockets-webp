@@ -42,6 +42,7 @@ module Sprockets
           logger.info context
           logger.info '********************************************************************************'
           "#{file_name}#{digest}#{file_ext}.webp" # WebP File fullname
+          "#{context.filename}.webp"
         end
 
         def encode_to_webp(data, webp_path, webp_file = "")
