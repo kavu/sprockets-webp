@@ -44,7 +44,7 @@ module Sprockets
           logger.info file_ext
           logger.info context.pathname
           logger.info digest
-          logger.info context.environment.find_asset(context.pathname.to_s)
+          logger.info context.environment.inspect
           logger.info '********************************************************************************'
           "#{file_name}#{digest}#{file_ext}.webp" # WebP File fullname
         end
