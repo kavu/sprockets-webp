@@ -40,10 +40,12 @@ module Sprockets
           file_ext  = context.pathname.extname # Original File extension
           logger.info '********************************************************************************'
           logger.info context
-          logger.info context.environment.find_asset
+          logger.info file_name
+          logger.info file_ext
+          logger.info context.pathname
+          logger.info digest
           logger.info '********************************************************************************'
           "#{file_name}#{digest}#{file_ext}.webp" # WebP File fullname
-          "#{context.filename}.webp"
         end
 
         def encode_to_webp(data, webp_path, webp_file = "")
