@@ -40,7 +40,8 @@ module Sprockets
           file_name = context.logical_path # Original File name w/o extension
           file_ext  = context.pathname.extname # Original File extension
           full_file_name = context.pathname.to_path
-
+          logger.info '********************************************************************************'
+          logger.info context[:metadata]
           logger.info "#{file_name}#{digest}#{dimensions(full_file_name)}#{file_ext}.webp"
           "#{file_name}#{digest}#{dimensions(full_file_name)}#{file_ext}.webp" # WebP File fullname
         end
