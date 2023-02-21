@@ -38,6 +38,9 @@ module Sprockets
           digest    = config.digest ? "-#{context.environment.digest_class.new.update(data).to_s}" : nil
           file_name = context.logical_path # Original File name w/o extension
           file_ext  = context.pathname.extname # Original File extension
+          logger.info '********************************************************************************'
+          logger.info context
+          logger.info '********************************************************************************'
           "#{file_name}#{digest}#{file_ext}.webp" # WebP File fullname
         end
 
