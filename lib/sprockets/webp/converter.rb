@@ -40,7 +40,7 @@ module Sprockets
           file_ext  = context.pathname.extname # Original File extension
           logger.info '********************************************************************************'
           logger.info "context.metadata: #{context.metadata[:dependencies].to_a.last}"
-          logger.info "context: #{context.load(context.metadata[:dependencies].to_a.last)}"
+          logger.info "context: #{context.load(context.metadata[:dependencies].to_a.last.gsub('file-digest', 'file'))}"
           logger.info "environment: #{context.environment}"
           logger.info '********************************************************************************'
           "#{file_name}#{digest}#{file_ext}.webp" # WebP File fullname
