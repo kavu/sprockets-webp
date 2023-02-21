@@ -40,7 +40,7 @@ module Sprockets
           file_ext  = context.pathname.extname # Original File extension
           logger.info '********************************************************************************'
           uri = context.resolve(context.logical_path)
-          asset = context.load(uri)
+          asset = context.load("file://#{uri}")
           logger.info uri
           logger.info asset
           logger.info asset.digest_path
