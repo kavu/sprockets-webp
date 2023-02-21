@@ -39,7 +39,11 @@ module Sprockets
           file_name = context.logical_path # Original File name w/o extension
           file_ext  = context.pathname.extname # Original File extension
           logger.info '********************************************************************************'
-          logger.info context.environment[context.logical_path].digest_path
+          uri = context.resolve(context.logical_path)
+          asset = context.load(uri)
+          logger.info uri
+          logger.info asset
+          logger.info asset.digest_path
           logger.info '********************************************************************************'
           "#{file_name}#{digest}#{file_ext}.webp" # WebP File fullname
         end
