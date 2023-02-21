@@ -39,7 +39,7 @@ module Sprockets
           file_name = context.logical_path # Original File name w/o extension
           file_ext  = context.pathname.extname # Original File extension
           logger.info '********************************************************************************'
-          logger.info "context.metadata: #{context.metadata[:dependencies]}"
+          logger.info "context.metadata: #{context.metadata[:dependencies].to_a.last}"
           logger.info "context: #{context.load(context.metadata[:dependencies])}"
           logger.info "environment: #{context.environment}"
           logger.info '********************************************************************************'
