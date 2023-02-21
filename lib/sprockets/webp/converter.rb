@@ -40,6 +40,7 @@ module Sprockets
           file_ext  = context.pathname.extname # Original File extension
           logger.info '********************************************************************************'
           logger.info context
+          logger.info context.environment.find_asset
           logger.info '********************************************************************************'
           "#{file_name}#{digest}#{file_ext}.webp" # WebP File fullname
           "#{context.filename}.webp"
