@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'tempfile'
 require 'logger'
 require 'fileutils'
@@ -52,7 +54,7 @@ module Sprockets
           FastImage.size(filename)&.join('x')
         end
 
-        def encode_to_webp(data, webp_path, webp_file = '')
+        def encode_to_webp(data, webp_path, webp_file = "")
           # Create Temp File with Original File binary data
           Tempfile.open('webp') do |file|
             file.binmode
@@ -63,14 +65,14 @@ module Sprockets
             begin
               ::WebP.encode(file.path, webp_path, Sprockets::WebP.encode_options)
               logger.info "Webp converted image #{webp_path}"
-            rescue StandardError => e
+            rescue => e
               logger.warn "Webp convertion error of image #{webp_file}. Error info: #{e.message}"
             end
           end
         end
 
         def logger
-          if @context&.environment
+          if @context && @context.environment
             @context.environment.logger
           else
             logger = Logger.new($stderr)
