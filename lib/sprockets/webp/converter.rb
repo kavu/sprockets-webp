@@ -80,6 +80,7 @@ module Sprockets
             logger
           end
         end
+
       end
     end
   end
