@@ -24,7 +24,7 @@ module Sprockets
           webp_path = Pathname.new File.join(app.root, 'public', config.prefix, webp_file)
 
           # Create Directory for both Files, unless already exists
-          FileUtils.mkdir_p(webp_path.dirname) unless Dir.exist?(webp_path.dirname)
+          FileUtils.mkdir_p(webp_path.dirname) unless Dir.exists?(webp_path.dirname)
 
           # encode to webp
           encode_to_webp(data, webp_path.to_path, webp_file) unless ::File.exist?(webp_path.to_path)
@@ -35,7 +35,7 @@ module Sprockets
         private
 
         def webp_file_by_config(config, data)
-          digest    = config.digest ? "-#{context.environment.digest_class.new.update(data)}" : nil
+          digest    = config.digest ? "-#{context.environment.digest_class.new.update(data).to_s}" : nil
           file_name = context.logical_path # Original File name w/o extension
           file_ext  = context.pathname.extname # Original File extension
           full_file_name = context.pathname.to_path
