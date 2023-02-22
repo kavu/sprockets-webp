@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'tempfile'
 require 'logger'
 require 'fileutils'
@@ -10,6 +8,7 @@ module Sprockets
   module WebP
     class Converter
       class << self
+
         attr_reader :context
 
         def process(app, context, data)
