@@ -4,6 +4,7 @@ require 'tempfile'
 require 'logger'
 require 'fileutils'
 require 'webp-ffi'
+require 'fastimage'
 
 module Sprockets
   module WebP
@@ -38,7 +39,19 @@ module Sprockets
           digest    = config.digest ? "-#{context.environment.digest_class.new.update(data).to_s}" : nil
           file_name = context.logical_path # Original File name w/o extension
           file_ext  = context.pathname.extname # Original File extension
-          "#{file_name}#{digest}#{file_ext}.webp" # WebP File fullname
+          full_file_name = context.pathname.to_path
+
+          "#{file_name}#{digest}#{dimensions(full_file_name)}#{file_ext}.webp" # WebP File fullname
+        end
+
+        def dimensions(filename)
+          d = image_width_x_height(filename)
+
+          "#{'-' if d}#{d}"
+        end
+
+        def image_width_x_height(filename)
+          FastImage.size(filename)&.join('x')
         end
 
         def encode_to_webp(data, webp_path, webp_file = "")
