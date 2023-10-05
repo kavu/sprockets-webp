@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'sprockets/webp/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'sprockets-webp'
+  spec.name          = 'sprockets-webp-jb'
   spec.version       = Sprockets::WebP::VERSION
   spec.authors       = ['Max Riveiro']
   spec.email         = ['kavu13@gmail.com']
@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'sprockets', '> 3'
   spec.add_dependency 'webp-ffi', '~> 0.2.0'
+  spec.add_dependency 'fastimage', '= 2.2.3'
 
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'rake'
