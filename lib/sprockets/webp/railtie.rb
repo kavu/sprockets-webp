@@ -10,8 +10,8 @@ module Sprockets
             Converter.process(app, context, data)
           end
 
-          evn.register_mime_type 'image/png', '.png'
-          evn.register_transformer 'image/png', 'image/webp', Converter
+          env.register_mime_type 'image/png', '.png'
+          env.register_transformer 'image/png', 'image/webp', Converter
           env.register_bundle_postprocessor 'image/png', :png_webp do |context, data|
             Converter.process(app, context, data)
           end
