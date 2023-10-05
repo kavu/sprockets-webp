@@ -11,7 +11,7 @@ module Sprockets
     class Converter
       attr_reader :context
 
-      def initialize(_options)
+      def initialize(_options = {})
       end
 
       def call(input)
