@@ -9,13 +9,13 @@ require 'fastimage'
 module Sprockets
   module WebP
     class Converter
-      attr_reader :context
+      attr_reader :context, :app
 
-      def initialize(_options = {})
+      def initialize(options = {})
+        @app = options[:app]
       end
 
       def call(input)
-        app = input[:environment].context_class.app
         @context = input[:environment].context_class.new(input)
         data = input[:data]
 
